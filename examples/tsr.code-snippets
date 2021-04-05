@@ -1,0 +1,89 @@
+{
+  "tsrfcb": {
+    "prefix": [
+      "tsrfcb"
+    ],
+    "body": [
+      "const $1: FC<Props> = ({ style }) => {",
+      "  return (",
+      "    <View style={[ styles.container, style ]}>",
+      "      $0",
+      "    </View>",
+      "  );",
+      "};"
+    ],
+    "description": "Functional component with return",
+    "scope": "typescript"
+  },
+  "tsrfcbt": {
+    "prefix": [
+      "tsrfcbt"
+    ],
+    "body": [
+      "import { View } from 'components/Common';",
+      "import React, { FC } from 'react';",
+      "import { Styles, ViewStyleProps } from 'styles';",
+      "",
+      "interface Props extends ViewStyleProps {",
+      "  $2",
+      "}",
+      "",
+      "export const $1: FC<Props> = ({ style }) => {",
+      "  return (",
+      "    <View style={[styles.container, style]}>",
+      "      $0",
+      "    </View>",
+      "  );",
+      "};",
+      "",
+      "const styles: Styles = {",
+      "  container: {},",
+      "};",
+      "",
+      "export type $1Props = Props;",
+      "export default $1;"
+    ],
+    "description": "Func component template with return"
+  },
+  "tsrfcs": {
+    "prefix": [
+      "tsrfcs"
+    ],
+    "body": [
+      "const $1: FC<Props> = ({ style }) => (",
+      "  <View style={[styles.container, style]}>",
+      "    $0",
+      "  </View>",
+      ");"
+    ],
+    "description": "Simple func component"
+  },
+  "tsrfcst": {
+    "prefix": [
+      "tsrfcst"
+    ],
+    "body": [
+      "import { View } from 'components/Common';",
+      "import React, { FC } from 'react';",
+      "import { Styles, ViewStyleProps } from 'styles';",
+      "",
+      "interface Props extends ViewStyleProps {",
+      "  $2",
+      "}",
+      "",
+      "export const $1: FC<Props> = ({ style }) => (",
+      "  <View style={[styles.container, style]}>",
+      "    $0",
+      "  </View>",
+      ");",
+      "",
+      "const styles: Styles = {",
+      "  container: {},",
+      "};",
+      "",
+      "export type $1Props = Props;",
+      "export default $1;"
+    ],
+    "description": "Simple func component template"
+  }
+}

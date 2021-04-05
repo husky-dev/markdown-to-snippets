@@ -2,9 +2,9 @@ import { parsePrefix, parseDescription, parseScope } from './parser';
 
 describe('parsePrefix()', () => {
   it('should parse', () => {
-    expect(parsePrefix('**Prefix**: `tsrfcb`')).toBe('tsrfcb');
-    expect(parsePrefix('Prefix: tsrfcb')).toBe('tsrfcb');
-    expect(parsePrefix('Prefix: tsr-fc_1b')).toBe('tsr-fc_1b');
+    expect(parsePrefix('**Prefix**: `tsrfcb`')).toMatchObject(['tsrfcb']);
+    expect(parsePrefix('Prefix: tsrfcb')).toMatchObject(['tsrfcb']);
+    expect(parsePrefix('Prefix: tsr-fc_1b')).toMatchObject(['tsr-fc_1b']);
   });
 });
 

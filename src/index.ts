@@ -1,8 +1,8 @@
 import program from 'commander';
 import { isStr, log, LogLevel } from 'utils';
-import { resolve } from 'path';
-import { readdirSync, existsSync, readFileSync } from 'fs';
-import { mdStrToSnippetsData } from 'lib';
+import { resolve, parse as parseFileName } from 'path';
+import { readdirSync, existsSync, readFileSync, writeFileSync } from 'fs';
+import { mdStrToSnippetsData, Snippet, SnippetsObj } from 'lib';
 
 program
   .name(NAME)
@@ -30,12 +30,17 @@ const convertCmd = (opts: Record<string, unknown>, args: string[]) => {
   const files = getFilesList(opts, args);
   log.debug('input files:', JSON.stringify(files));
   for (const inFile of files) {
-    log.debug('parsing ', inFile);
+    log.debug('parsing input file:', inFile);
+    const { name: fileName } = parseFileName(inFile);
     const str = readFileSync(inFile, 'utf-8');
     const snippets = mdStrToSnippetsData(str);
     log.debug('snippets found:', snippets.length);
-    snippets.forEach(itm => log.trace(JSON.stringify(itm)));
+    // snippets.forEach(itm => log.trace(JSON.stringify(itm)));
+    const outFile = resolve(outPath, `${fileName}.code-snippets`);
+    log.debug('wirting output file:', outFile);
+    writeFileSync(outFile, JSON.stringify(snippetsToObj(snippets), null, 2), 'utf-8');
   }
+  log.info('done');
 };
 
 const getFilesList = (opts: Record<string, unknown>, args: string[]): string[] => {
@@ -62,6 +67,17 @@ const checkFilesExistance = (files: string[]) => {
       log.errAndExit(`file "${file}" not found`);
     }
   }
+};
+
+const snippetsToObj = (items: Snippet[]): SnippetsObj => {
+  const obj: SnippetsObj = {};
+  for (const itm of items) {
+    if (itm.prefix.length) {
+      const [prefix] = itm.prefix;
+      obj[prefix] = itm;
+    }
+  }
+  return obj;
 };
 
 // Start
