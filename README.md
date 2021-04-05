@@ -39,7 +39,7 @@ Then run next command:
 npx md2snipp --root .vscode/snippets --output .vscode
 ```
 
-The tool will look for a `.md` files at `.vscode/snippets`, will convert it to `.code-snippets` files, and will output a result to `.vscode`.
+The tool will look for a `.md` files at `.vscode/snippets`, will convert it to `.code-snippets` files, and will output a result to `.vscode`. It distinguishes separate snippets by the `**Prefix**` keyword and by and of the code block. You can add any other text and comments. The tool will look only for the keywords and snippet's body.
 
 In this example, you are able to keep `.md` files next to the project, share them with teammates, and easily review them right at GitHub.
 
