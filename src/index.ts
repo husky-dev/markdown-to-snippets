@@ -11,8 +11,8 @@ program
     files: 'list of files to convert. The app fill look for the .md files at the current folder by default',
   })
   .version(VERSION, '-v, --version', 'output the current version')
-  .option('-r, --root', 'specify a root folder for .md files', 'current folder')
-  .option('-o, --output', 'specify an output folder for snippets files', 'current folder')
+  .option('-r, --root <path>', 'specify a root folder for .md files')
+  .option('-o, --output <path>', 'specify an output folder for snippets files')
   .option('--debug', 'output extra debugging');
 
 // Commands
@@ -34,6 +34,7 @@ const convertCmd = (opts: Record<string, unknown>, args: string[]) => {
     const str = readFileSync(inFile, 'utf-8');
     const snippets = mdStrToSnippetsData(str);
     log.debug('snippets found:', snippets.length);
+    snippets.forEach(itm => log.trace(JSON.stringify(itm)));
   }
 };
 
